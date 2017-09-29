@@ -10,7 +10,7 @@
     "am-pagination"
   ],
   "homepage": "https://github.com/lucky51/jquery-plugins",
-  "private": true,
+  "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
