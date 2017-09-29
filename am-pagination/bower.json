@@ -1,0 +1,24 @@
+{
+  "name": "am-pagination",
+  "description": "jquery amazeui pagination",
+  "main": "gulpfile.js",
+  "authors": [
+    "lucky51 <941841706@qq.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "am-pagination"
+  ],
+  "homepage": "https://github.com/lucky51/jquery-plugins",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "amazeui": "^2.7.2"
+  }
+}
