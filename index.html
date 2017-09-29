@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>amPagination</title>
-	<script type="text/javascript" src="./bower_components/jquery/dist/jquery.js"></script>
-   <!-- 	<script type="text/javascript" src="./bower_components/amazeui/dist/js/amazeui.js"></script> -->
-	<link rel="stylesheet" href="./bower_components/amazeui/dist/css/amazeui.flat.css">
- 	<script type="text/javascript" src="./dist/js/am-pagination.js"></script>
+   <meta charset="UTF-8">
+   <title>amPagination</title>
+   <script type="text/javascript" src="../jquery/dist/jquery.js"></script>
+   <!--  <script type="text/javascript" src="./bower_components/amazeui/dist/js/amazeui.js"></script> -->
+   <link rel="stylesheet" href="../amazeui/dist/css/amazeui.flat.css">
+   <script type="text/javascript" src="./dist/js/am-pagination.js"></script>
 </head>
 <body>
-	<section id="ampager">
+   <section id="ampager">
       
    </section>
    <br>
@@ -20,8 +20,8 @@
    <br>
 </body>
 <script type="text/javascript">
-	var pagerOpts={
-		   maxSize: 7, // Limit number for pagination size.      default:7
+   var pagerOpts={
+         maxSize: 7, // Limit number for pagination size.      default:7
          totals: 100, //Total number of items in all pages.
          page: 1,  //select page index  1....total page
          pageSize: 10, //Maximum number of items per page. A value less than one indicates all items on one page.  default :10
@@ -33,9 +33,9 @@
          directionLinks: true,// Whether to display Previous / Next buttons.  default:true
          boundaryLinks: true,// Whether to display first / last buttons.      default:true
          className:'am-pagination' //inner container className  default:'am-pagination'
-	};
+   };
 
-	var pger =jQuery('#ampager')
+   var pger =jQuery('#ampager')
                   .pager(pagerOpts)
                   .onChangePage(function(e){
                            console.info('pager bind envent :selected page:'+e.page+'  current pageSize:'+e.pageSize+'  number of items'+e.totals);
