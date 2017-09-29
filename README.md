@@ -94,4 +94,4 @@ You can use am-pagination   by   amPagination of window  :
        
 ```
 
-![image](https://raw.githubusercontent.com/lucky51/jquery-plugins/master/am-pagination/images/am-pagination.jpg)
+![image](https://github.com/lucky51/am-pagination/blob/master/images/am-pagination.jpg?raw=true)
