@@ -12,7 +12,7 @@
 ```
 Note :this plugin use amaze ui class
 
-bower install amazeui
+bower install am-pagination
 
 Or 
 
