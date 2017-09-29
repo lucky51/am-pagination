@@ -10,15 +10,16 @@
 <script type="text/javascript" src="/am-pagination.js"></script>
 
 ```
-Note :this plugin use amaze ui class
 
 install by bower :
 
 `bower install am-pagination`
 
+this plugin based on amazeui
+
 Or 
 
-change default class by className;
+change default class by className option;
 
 
 ```html
