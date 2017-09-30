@@ -19,11 +19,11 @@ install by bower :
 
 `bower install am-pagination`
 
-this plugin based on amazeui
+~~this plugin based on amazeui~~
 
-Or 
+use bootstrap or amazeui theme 
 
-change default class by className option;
+~~change default class by className option;~~
 
 
 ```html
