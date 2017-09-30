@@ -59,7 +59,7 @@ var pagerOpts={
 //bind change event
 
 var pger =jQuery('#ampager')
-                .pager(pagerOpts)
+                .pagination(pagerOpts)
                 .onChangePage(function(e){
                          console.info('pager bind envent :selected page:'+e.page+'  current pageSize:'+e.pageSize+'  number of items'+e.totals);
                 });
@@ -67,7 +67,7 @@ var pger =jQuery('#ampager')
 
                 //Or 
                 
-                jQuery('#ampager').on('am.pager.change',function(e){
+                jQuery('#ampager').on('am.pagination.change',function(e){
                       console.info('jquery bind event :selected page:'+e.page+'  current pageSize:'+e.pageSize+'  number of items'+e.totals);
 
                 });
@@ -84,7 +84,7 @@ var pger =jQuery('#ampager')
         pger.render(rdrOpts);
  });
  jQuery('.newch').on('click',function(){
-       jQuery('#ampager').pager({
+       jQuery('#ampager').pagination({
            page:5
         });
  });

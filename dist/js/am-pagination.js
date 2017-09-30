@@ -16,7 +16,7 @@
       }
   }(this, function ($) {
             var Pager = function (ele, opts) {
-            var options = $.extend({}, $.fn.pager.default, opts);
+            var options = $.extend({}, $.fn.pagination.default, opts);
             this.ele = ele;
            
             this.container=function(self){
@@ -36,7 +36,7 @@
             };
             this.onChangePage=function(fn){
                 if(fn&&typeof fn==='function'){
-                    this.ele.on('am.pager.change',fn);
+                    this.ele.on('am.pagination.change',fn);
                 }
                 return this;
             };
@@ -57,7 +57,7 @@
             this.selectPage = function (selpage) {
                 options.page =selpage;
                 this.ele.trigger({
-                    type: 'am.pager.change',
+                    type: 'am.pagination.change',
                     page: selpage,
                     pageSize: this.pageSize,
                     totals: this.totals
@@ -185,6 +185,7 @@
                     cnextText:options.nextText,
                     cuiType:options.theme,
                     cbtnSize:options.btnSize,
+                    cdirectionLinks:options.directionLinks,
                     cspage:spage,
                     cepage:epage
 
@@ -327,7 +328,7 @@
                
             }
         };
-        $.fn.pager = function (popts) {
+        $.fn.pagination = function (popts) {
             var pger ={};
             args =arguments;
             if(!this.attr('data-pagination')){
@@ -344,7 +345,7 @@
 
         };
         
-        $.fn.pager.default = {
+        $.fn.pagination.default = {
             maxSize: 7,
             totals: 100,
             page: 1,
@@ -369,7 +370,7 @@
             }else if(typeof selector==='string'){
                 $sel=$(selector);
             }
-            return $.fn.pager.call($sel, pots);
+            return $.fn.pagination.call($sel, pots);
         };
         return gpger;
   }));

@@ -1,7 +1,10 @@
+
+
 .am-pagination-lg > li > a, .am-pagination-lg > li > span {
     padding: 10px 16px;
     font-size: 18px;
     line-height: 1.3333333;
+
 }
 .am-pagination-sm > li > a, .am-pagination-sm > li > span {
 	padding: 5px 10px;
@@ -16,7 +19,7 @@
 }
 .am-pagination-default > li {
   display: inline;
-
+font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
 .am-pagination-default > li > a,
 .am-pagination-default > li > span {
