@@ -5,8 +5,12 @@
 
 ```javascript
 <script type="text/javascript" src="/bower_components/jquery/dist/jquery.js"></script>
-<link rel="stylesheet" href="/bower_components/amazeui/dist/css/amazeui.flat.css">
-<script type="text/javascript" src="/bower_components/amazeui/dist/js/amazeui.js"></script>
+
+<link rel="stylesheet" href="../amazeui/dist/css/amazeui.flat.css"> //Or theme:'amazeui'  
+<link rel="stylesheet" href="./dist/css/am-pagination.css"> //Or    //  
+<link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.css"> //Or theme:'bootstrap'  
+
+
 <script type="text/javascript" src="/am-pagination.js"></script>
 
 ```
@@ -37,18 +41,19 @@ change default class by className option;
              
 
 var pagerOpts={
-  maxSize: 7, // Limit number for pagination size.      default:7
-  totals: 100, //Total number of items in all pages.
-  page: 1,  //select page index  1....total page
-  pageSize: 10, //Maximum number of items per page. A value less than one indicates all items on one page.  default :10
-  lastText: '&raquo;&raquo;', //Text for Last button.    default: '&raquo;&raquo;'
-  firstText: '&laquo;&laquo;', //Text for First button. default: '&laquo;&laquo;'
-  prevText: '&laquo;',//&laquo; //Text for Previous  button.  default:'&laquo;'
-  nextText: '&raquo;', //Text for next button.   default:'&raquo;'
-  rotate: true,//Whether to keep current page in the middle of  the visible ones   default:true
-  directionLinks: true,// Whether to display Previous / Next buttons.  default:true
-  boundaryLinks: true,// Whether to display first / last buttons.      default:true
-  className:'am-pagination' //inner container className  default:'am-pagination'
+         maxSize: 7, // Limit number for pagination size.      default:7
+         totals: 100, //Total number of items in all pages.
+         page: 1,  //select page index  1....total page
+         pageSize: 10, //Maximum number of items per page. A value less than one indicates all items on one page.  default :10
+         lastText: '&raquo;&raquo;', //Text for Last button.    default: '&raquo;&raquo;'
+         firstText: '&laquo;&laquo;', //Text for First button. default: '&laquo;&laquo;'
+         prevText: '&laquo;',//&laquo; //Text for Previous  button.  default:'&laquo;'
+         nextText: '&raquo;', //Text for next button.   default:'&raquo;'
+         rotate: true,//Whether to keep current page in the middle of  the visible ones   default:true
+         directionLinks: true,// Whether to display Previous / Next buttons.  default:true
+         boundaryLinks: true,// Whether to display first / last buttons.      default:true
+         theme:'', // 'bootstrap' or 'amazeui'   defalut:''   default ui  only modify background color from bootstrap pagination
+         btnSize:'' // 'sm'  or 'lg'  defalut : ''
 };
 
 //bind change event
@@ -98,3 +103,6 @@ You can use am-pagination   by   amPagination of window  :
 ```
 
 ![image](https://github.com/lucky51/am-pagination/blob/master/images/am-pagination.jpg?raw=true)
+
+
+![image](https://github.com/lucky51/am-pagination/blob/master/images/am-pagination2.jpg?raw=true)

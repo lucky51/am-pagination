@@ -1,0 +1,12 @@
+.am-pagination-lg > li > a, .am-pagination-lg > li > span {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+}
+
+.am-pagination-sm > li > a, .am-pagination-sm > li > span {
+
+	padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+}

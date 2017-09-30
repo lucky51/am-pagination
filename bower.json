@@ -1,6 +1,6 @@
 {
   "name": "am-pagination",
-  "description": "jquery amazeui pagination",
+  "description": "jquery  am-pagination",
   "authors": [
     "lucky51 <941841706@qq.com>"
   ],
@@ -18,6 +18,7 @@
     "tests"
   ],
   "dependencies": {
-    "amazeui": "^2.7.2"
+    "amazeui": "^2.7.2",
+    "bootstrap": "^3.3.7"
   }
 }

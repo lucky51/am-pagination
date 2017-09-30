@@ -46,13 +46,12 @@
             this.currPage = function () {
                 return this._page + 1;
             };
-
             if (options.page && options.page > 0) {
                 this._page = options.page - 1;
             } else if (this.ele.data('page')) {
                 this._page = parseInt(this.ele.data('page'));
             }
-            this.container(this).addClass(options.className);
+           // this.container(this).addClass(options.className);
 
             this.pageSize = options.pageSize;
             this.selectPage = function (selpage) {
@@ -95,6 +94,7 @@
                 e.preventDefault();
                 var currpage = '';
                 var $self = $(e.target);
+
                 var $p = $self.parent('li');
                 if ($p.hasClass('pager-first')) {
                     this.selectPage(1);
@@ -114,7 +114,7 @@
                     this.selectPage(pageCount);
                 }
                 else {
-                    if ($p.hasClass('am-active')) return;
+                    if ($p.hasClass('am-active')||$p.hasClass('active')) return;
                     this.selectPage(parseInt($self.text()));
                 }
 
@@ -173,32 +173,24 @@
                 }
 
                 epage = epage > pageCount ? pageCount : epage;
-                var htm = [];
-                if (options.boundaryLinks === true) {
-                    htm.push('<li  class=" pager-first ' + (this._page === 0 || this.totals<=0 ? 'am-disabled' : '') + '" ><a href="#">' + options.firstText + '</a></li>');
-                }
 
-                if (options.directionLinks === true) {
-                    htm.push('<li  class=" pager-prev   ' + (this._page === 0 || this.totals <= 0? 'am-disabled' : '') + '  "><a href="#">' + options.prevText + '</a></li>');
-                }
+                this.createUITmp({
+                    cpgidx:this._page,
+                    ctotals:this.totals,
+                    cboundaryLinks:options.boundaryLinks,
+                    cfirstText:options.firstText,
+                    cpageCount:pageCount,
+                    clastText:options.lastText,
+                    cprevText:options.prevText,
+                    cnextText:options.nextText,
+                    cuiType:options.theme,
+                    cbtnSize:options.btnSize,
+                    cspage:spage,
+                    cepage:epage
 
-                if (spage !== 0) {
-                    htm.push('<li><span>...</span></li>');
-                }
-                for (var i = spage; i < epage; i++) {
-                    htm.push('<li ' + (this._page === i ? 'class="am-active"' : "") + '><a href="#">' + (i + 1) + '</a></li>');
-                }
-                if (epage !== pageCount) {
-                    htm.push('<li><span>...</span></li>');
-                }
-                if (options.directionLinks === true) {
-                    htm.push(' <li class="pager-next ' + (this._page === pageCount - 1 || this.totals <= 0 ? 'am-disabled ' : '') + '"><a href="#">' + options.nextText + '</a></li>');
-                }
-                if (options.boundaryLinks === true) {
-                    htm.push(' <li class=" pager-last ' + (this._page === pageCount - 1 || this.totals <= 0? 'am-disabled' : '') + '"><a href="#">' + options.lastText + '</a></li>');
-                }
-                this.container(this).empty();
-                this.container(this).append($(htm.join('')));
+                },this.container(this));
+
+                
             };
             this.container(this).on('click', 'li>a', $.proxy(this.click, this));
             this.selectPage(options.page);
@@ -211,6 +203,12 @@
             check$:function(obj){
                 if(!obj)return false;
                 return obj instanceof $;
+            },
+            addClassOnce:function(elem,classname){
+                if(!elem.hasClass(classname)){
+                    elem.addClass(classname);
+                }
+                
             }
          };
         Pager.prototype={
@@ -224,6 +222,109 @@
                     return $($obj).get(0).tagName===htmtag;
                 }
                 return false;
+            },
+            createUITmp:function(copts,celem){ //cpgidx,ctotals,cboundaryLinks,cfirstText,cpageCount,clastText,cprevText,cnextText,cuiType,cspage,cepage
+
+                var htm =[];
+                if(copts.cuiType==='amazeui'){
+                        Pager.Global["addClassOnce"](celem,'am-pagination');
+                        if(copts.cbtnSize==="sm"){
+                             Pager.Global["addClassOnce"](celem,'am-pagination-sm');
+                        }else if(copts.cbtnSize==="lg"){
+                            Pager.Global["addClassOnce"](celem,'am-pagination-lg');
+                        }
+                        
+                        if (copts.cboundaryLinks === true) {
+                            htm.push('<li  class=" pager-first ' + (copts.cpgidx === 0 || copts.ctotals<=0 ? 'am-disabled' : '') + '" ><a href="#">' + copts.cfirstText + '</a></li>');
+                        }
+
+                        if (copts.cdirectionLinks === true) {
+                            htm.push('<li  class=" pager-prev   ' + (copts.cpgidx === 0 ||copts.ctotals<= 0? 'am-disabled' : '') + '  "><a href="#">' + copts.cprevText + '</a></li>');
+                        }
+
+                        if (copts.cspage !== 0) {
+                            htm.push('<li><span>...</span></li>');
+                        }
+                        for (var i = copts.cspage; i < copts.cepage; i++) {
+                            htm.push('<li ' + (copts.cpgidx === i ? 'class="am-active"' : "") + '><a href="#">' + (i + 1) + '</a></li>');
+                        }
+                        if (copts.cepage !== copts.cpageCount) {
+                            htm.push('<li><span>...</span></li>');
+                        }
+                        if (copts.cdirectionLinks === true) {
+                            htm.push(' <li class="pager-next ' + (copts.cpgidx === copts.cpageCount - 1 || copts.ctotals <= 0 ? 'am-disabled ' : '') + '"><a href="#">' + copts.cnextText + '</a></li>');
+                        }
+                        if (copts.cboundaryLinks === true) {
+                            htm.push(' <li class=" pager-last ' + (copts.cpgidx === copts.cpageCount - 1 || copts.ctotals <= 0? 'am-disabled' : '') + '"><a href="#">' + copts.clastText + '</a></li>');
+                        }
+                }else if(copts.cuiType==='bootstrap'){
+                        Pager.Global["addClassOnce"](celem,'pagination');
+                        if(copts.cbtnSize==="sm"){
+                             Pager.Global["addClassOnce"](celem,'pagination-sm');
+                        }else if(copts.cbtnSize==="lg"){
+                            Pager.Global["addClassOnce"](celem,'pagination-lg');
+                        }
+                        if(!celem.hasClass('pagination')){
+                            celem.addClass('pagination');
+                        }
+                         if (copts.cboundaryLinks === true) {
+                            htm.push('<li  class=" pager-first ' + (copts.cpgidx === 0 || copts.ctotals<=0 ? 'disabled' : '') + '" ><a href="#">' + copts.cfirstText + '</a></li>');
+                        }
+
+                        if (copts.cdirectionLinks === true) {
+                            htm.push('<li  class=" pager-prev   ' + (copts.cpgidx === 0 ||copts.ctotals<= 0? 'disabled' : '') + '  "><a href="#">' + copts.cprevText + '</a></li>');
+                        }
+
+                        if (copts.cspage !== 0) {
+                            htm.push('<li><span>...</span></li>');
+                        }
+                        for (var i = copts.cspage; i < copts.cepage; i++) {
+                            htm.push('<li ' + (copts.cpgidx === i ? 'class="active"' : "") + '><a href="#">' + (i + 1) + '</a></li>');
+                        }
+                        if (copts.cepage !== copts.cpageCount) {
+                            htm.push('<li><span>...</span></li>');
+                        }
+                        if (copts.cdirectionLinks === true) {
+                            htm.push(' <li class="pager-next ' + (copts.cpgidx === copts.cpageCount - 1 || copts.ctotals <= 0 ? 'disabled ' : '') + '"><a href="#">' + copts.cnextText + '</a></li>');
+                        }
+                        if (copts.cboundaryLinks === true) {
+                            htm.push(' <li class=" pager-last ' + (copts.cpgidx === copts.cpageCount - 1 || copts.ctotals <= 0? 'disabled' : '') + '"><a href="#">' + copts.clastText + '</a></li>');
+                        }
+                }else{
+                      Pager.Global["addClassOnce"](celem,'am-pagination-default');
+                       if(copts.cbtnSize==="sm"){
+                             Pager.Global["addClassOnce"](celem,'am-pagination-default-sm');
+                        }else if(copts.cbtnSize==="lg"){
+                             Pager.Global["addClassOnce"](celem,'am-pagination-default-lg');
+                        }
+                      
+                      if (copts.cboundaryLinks === true) {
+                            htm.push('<li  class=" pager-first ' + (copts.cpgidx === 0 || copts.ctotals<=0 ? 'disabled' : '') + '" ><a href="#">' + copts.cfirstText + '</a></li>');
+                        }
+
+                        if (copts.cdirectionLinks === true) {
+                            htm.push('<li  class=" pager-prev   ' + (copts.cpgidx === 0 ||copts.ctotals<= 0? 'disabled' : '') + '  "><a href="#">' + copts.cprevText + '</a></li>');
+                        }
+
+                        if (copts.cspage !== 0) {
+                            htm.push('<li><span>...</span></li>');
+                        }
+                        for (var i = copts.cspage; i < copts.cepage; i++) {
+                            htm.push('<li ' + (copts.cpgidx === i ? 'class="active"' : "") + '><a href="#">' + (i + 1) + '</a></li>');
+                        }
+                        if (copts.cepage !== copts.cpageCount) {
+                            htm.push('<li><span>...</span></li>');
+                        }
+                        if (copts.cdirectionLinks === true) {
+                            htm.push(' <li class="pager-next ' + (copts.cpgidx === copts.cpageCount - 1 || copts.ctotals <= 0 ? 'disabled ' : '') + '"><a href="#">' + copts.cnextText + '</a></li>');
+                        }
+                        if (copts.cboundaryLinks === true) {
+                            htm.push(' <li class=" pager-last ' + (copts.cpgidx === copts.cpageCount - 1 || copts.ctotals <= 0? 'disabled' : '') + '"><a href="#">' + copts.clastText + '</a></li>');
+                        }
+                }
+                this.container(this).empty();
+                this.container(this).append($(htm.join('')));
+               
             }
         };
         $.fn.pager = function (popts) {
@@ -255,7 +356,8 @@
             rotate: true,
             directionLinks: true,
             boundaryLinks: true,
-            className:'am-pagination'
+            theme:'',
+            btnSize:''
 
         };
         var gpger =function (selector, pots) {
