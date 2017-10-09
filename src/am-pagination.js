@@ -93,9 +93,9 @@
             this.click = function (e) {
                 e.preventDefault();
                 var currpage = '';
-                var $self = $(e.target);
-                 if($p.hasClass('am-disabled')||$p.hasClass('disabled'))return;
+                var $self = $(e.target);                
                 var $p = $self.parent('li');
+                if($p.hasClass('am-disabled')||$p.hasClass('disabled')){return;}
                 if ($p.hasClass('pager-first')) {
                     this.selectPage(1);
                 }
@@ -112,7 +112,7 @@
                     this.selectPage(pageCount);
                 }
                 else {
-                    if ($p.hasClass('am-active')||$p.hasClass('active')) return;
+                    if ($p.hasClass('am-active')||$p.hasClass('active')) {return;}
                     this.selectPage(parseInt($self.text()));
                 }
             };
