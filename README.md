@@ -21,6 +21,8 @@ install by bower :
 
 ~~this plugin based on amazeui~~
 
+demo page : https://lucky51.github.io/
+
 use bootstrap or amazeui theme 
 
 ~~change default class by className option;~~
