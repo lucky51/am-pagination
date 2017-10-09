@@ -21,6 +21,8 @@ install by bower :
 
 ~~this plugin based on amazeui~~
 
+demo page : https://lucky51.github.io/
+
 use bootstrap or amazeui theme 
 
 ~~change default class by className option;~~
@@ -53,7 +55,8 @@ var pagerOpts={
          directionLinks: true,// Whether to display Previous / Next buttons.  default:true
          boundaryLinks: true,// Whether to display first / last buttons.      default:true
          theme:'', // 'bootstrap' or 'amazeui'   defalut:''   default ui  only modify background color from bootstrap pagination
-         btnSize:'' // 'sm'  or 'lg'  defalut : ''
+         btnSize:'', // 'sm'  or 'lg'  defalut : ''
+         hideIfEmpty:true  //the container is hidden when its data is empty.
 };
 
 //bind change event
@@ -61,6 +64,7 @@ var pagerOpts={
 var pger =jQuery('#ampager')
                 .pagination(pagerOpts)
                 .onChangePage(function(e){
+                         console.info(e.tiggerSource);  //  'code'  or 'manual' 
                          console.info('pager bind envent :selected page:'+e.page+'  current pageSize:'+e.pageSize+'  number of items'+e.totals);
                 });
 

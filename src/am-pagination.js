@@ -54,13 +54,14 @@
            // this.container(this).addClass(options.className);
 
             this.pageSize = options.pageSize;
-            this.selectPage = function (selpage) {
+            this.selectPage = function (selpage,tsource) {
                 options.page =selpage;
                 this.ele.trigger({
                     type: 'am.pagination.change',
                     page: selpage,
                     pageSize: this.pageSize,
-                    totals: this.totals
+                    totals: this.totals,
+                    tiggerSource:tsource||'code'
                 });
                 this._page = selpage - 1;
                 this.fill();
@@ -97,31 +98,45 @@
                 var $p = $self.parent('li');
                 if($p.hasClass('am-disabled')||$p.hasClass('disabled')){return;}
                 if ($p.hasClass('pager-first')) {
-                    this.selectPage(1);
+                    this.selectPage(1,'manual');
                 }
                 else if ($p.hasClass('pager-prev')) {
                     currpage = this.currPage() - 1;
-                    this.selectPage(currpage);
+                    this.selectPage(currpage,'manual');
                 }
                 else if ($p.hasClass('pager-next')) {
                     currpage = this.currPage() + 1;
-                    this.selectPage(currpage);
+                    this.selectPage(currpage,'manual');
                 }
                 else if ($p.hasClass('pager-last')) {
                     var pageCount = Math.ceil(this.totals / this.pageSize);
-                    this.selectPage(pageCount);
+                    this.selectPage(pageCount,'manual');
                 }
                 else {
                     if ($p.hasClass('am-active')||$p.hasClass('active')) {return;}
-                    this.selectPage(parseInt($self.text()));
+                    this.selectPage(parseInt($self.text()),'manual');
                 }
             };
 
             this.fill = function () {
-                if (this.pageSize <= 0) throw Error('pageSize invalid!');
-                if (this.totals <= 0) {
-                    console.warn('totals :' + this.totals);
+                if (this.pageSize <= 0){
+                    throw Error('pageSize invalid!');
                 }
+                if (this.totals < 0) {
+                    throw Error('totals invalid!');
+                }
+                var el =this.container(this);
+                if(this.totals===0){                  
+                    if(options.hideIfEmpty===true){                       
+                        if(!el.is(':hidden')){
+                            el.hide();
+                        }
+                    }
+                }else{
+                    if(el.is(':hidden')){
+                        el.show();
+                    }
+                }             
                 var pageCount = Math.ceil(this.totals / this.pageSize);
                 if (this._page < 0) {
                     this._page = 0;
@@ -160,8 +175,6 @@
                             epage = this.maxSize - 1;
                             spage = 0;
                         }
-
-
                     }
                     epage = epage + 1;
                 } else {
@@ -327,7 +340,7 @@
         };
         $.fn.pagination = function (popts) {
             var pger ={};
-            args =arguments;
+            var args =arguments;
             if(!this.attr('data-pagination')){
                 pger = new Pager(this, popts);
                 var jstr =JSON.stringify(pger.context());
@@ -355,7 +368,8 @@
             directionLinks: true,
             boundaryLinks: true,
             theme:'',
-            btnSize:''
+            btnSize:'',
+            hideIfEmpty:false
 
         };
         var gpger =function (selector, pots) {

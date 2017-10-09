@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+      <script type="text/javascript" src="./bower_components/jquery/dist/jquery.js"></script> 
+   <!--  <script type="text/javascript" src="./bower_components/amazeui/dist/js/amazeui.js"></script> -->
+  <!--  <link rel="stylesheet" href="../amazeui/dist/css/amazeui.flat.css"> -->
+   <!--  <link rel="stylesheet" href="./bower_components/amazeui/dist/css/amazeui.flat.css"> --> 
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">  
+    <script src="./src/am-pagination.js"></script>
+</head>
+<body>
+    <section id="ampager">
+</body>
+<script>
+
+var pagerOpts={
+         maxSize: 7, // Limit number for pagination size.      default:7
+         totals: 100, //Total number of items in all pages.
+         page: 5,  //select page index  1....total page
+         pageSize: 10, //Maximum number of items per page. A value less than one indicates all items on one page.  default :10
+         lastText: '&raquo;&raquo;', //Text for Last button.    default: '&raquo;&raquo;'
+         firstText: '&laquo;&laquo;', //Text for First button. default: '&laquo;&laquo;'
+         prevText: '&laquo;',//&laquo; //Text for Previous  button.  default:'&laquo;'
+         nextText: '&raquo;', //Text for next button.   default:'&raquo;'
+         rotate: true,//Whether to keep current page in the middle of  the visible ones   default:true
+         directionLinks: true,// Whether to display Previous / Next buttons.  default:true
+         boundaryLinks: true,// Whether to display first / last buttons.      default:true
+         theme:'bootstrap', // 'bootstrap' or 'amazeui'   defalut:''   default ui  only modify background color from bootstrap pagination
+         btnSize:'', // 'sm'  or 'lg'  defalut : ''
+         hideIfEmpty:true  //the container is hidden when its data is empty.
+   };
+
+   var pger =jQuery('#ampager')
+                  .pagination(pagerOpts)
+                  .onChangePage(function(e){
+                      console.log(e.tiggerSource);  //  'code'  or 'manual'  
+                      console.info('pager bind envent :selected page:'+e.page+'  current pageSize:'+e.pageSize+'  number of items'+e.totals);
+                  });
+</script>
+</html>
