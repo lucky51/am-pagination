@@ -20,7 +20,7 @@
 var pagerOpts={
          maxSize: 7, // Limit number for pagination size.      default:7
          totals: 100, //Total number of items in all pages.
-         page: 5,  //select page index  1....total page
+         page: 5,  //select page index  1...total page
          pageSize: 10, //Maximum number of items per page. A value less than one indicates all items on one page.  default :10
          lastText: '&raquo;&raquo;', //Text for Last button.    default: '&raquo;&raquo;'
          firstText: '&laquo;&laquo;', //Text for First button. default: '&laquo;&laquo;'
@@ -37,7 +37,7 @@ var pagerOpts={
    var pger =jQuery('#ampager')
                   .pagination(pagerOpts)
                   .onChangePage(function(e){
-                      console.log(e.tiggerSource);  //  'code'  or 'manual'  
+                      console.log(e.tiggerSource);  //    'code'  or 'manual'  
                       console.info('pager bind envent :selected page:'+e.page+'  current pageSize:'+e.pageSize+'  number of items'+e.totals);
                   });
 </script>
