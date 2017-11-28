@@ -56,7 +56,7 @@ var pagerOpts={
          boundaryLinks: true,// Whether to display first / last buttons.      default:true
          theme:'', // 'bootstrap' or 'amazeui'   defalut:''   default ui  only modify background color from bootstrap pagination
          btnSize:'', // 'sm'  or 'lg'  defalut : ''
-         hideIfEmpty:true  //the container is hidden when its data is empty.
+         hideIfEmpty:true  //the container is hidden when its data is empty 
 };
 
 //bind change event

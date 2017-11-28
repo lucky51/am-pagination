@@ -51,7 +51,6 @@
             } else if (this.ele.data('page')) {
                 this._page = parseInt(this.ele.data('page'));
             }
-           // this.container(this).addClass(options.className);
 
             this.pageSize = options.pageSize;
             this.selectPage = function (selpage,tsource) {
